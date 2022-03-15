@@ -69,7 +69,10 @@ class Importer(importer.ImporterProtocol):
             "cash":        self.config['transfer'],
             "dep":         self.config['transfer'],
         }
-        self.cash_account = self.commodity_leaf(self.config['main_account'], self.currency)
+        self.cash_account = self.config.get(
+            'main_account_cash',
+            self.commodity_leaf(self.config['main_account'], self.currency),
+        )
 
     def custom_init(self):
         if not self.custom_init_run:
