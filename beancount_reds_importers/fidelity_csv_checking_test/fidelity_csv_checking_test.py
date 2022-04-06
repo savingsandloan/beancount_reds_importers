@@ -21,18 +21,18 @@ fund_info = {
 }
 
 transfer_info = {
-    "transfer_accounts": [
-        (
-            "X99999999",
-            "Assets:US:Fidelity:Brokerage",
-            fidelity_csv.Importer.TransferDedupeStyle.COMMENT_INCOMING_TRANSACTIONS,
-        ),
-        (
-            "222222222",
-            "Assets:US:Fidelity:HSA",
-            fidelity_csv.Importer.TransferDedupeStyle.COMMENT_INCOMING_TRANSACTIONS,
-        ),
-    ],
+    "transfer_accounts": {
+        "X99999999" : {
+            "main_account": "Assets:US:Fidelity:Brokerage",
+            "cash_account": "Assets:US:Fidelity:Brokerage:Cash",
+            "dedupe_style": fidelity_csv.Importer.TransferDedupeStyle.COMMENT_INCOMING_TRANSACTIONS,
+        },
+        "222222222" : {
+            "main_account": "Assets:US:Fidelity:HSA",
+            "cash_account": "Assets:US:Fidelity:HSA:Cash",
+            "dedupe_style": fidelity_csv.Importer.TransferDedupeStyle.COMMENT_INCOMING_TRANSACTIONS,
+        },
+    },
 }
 
 IMPORTER = fidelity_csv.Importer(

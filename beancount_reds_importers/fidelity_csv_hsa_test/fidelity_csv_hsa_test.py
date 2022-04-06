@@ -18,13 +18,13 @@ fund_info = {
 }
 
 transfer_info = {
-    "transfer_accounts": [
-        (
-            "X11111111",
-            "Assets:US:Fidelity:Checking",
-            fidelity_csv.Importer.TransferDedupeStyle.COMMENT_INCOMING_TRANSACTIONS,
-        ),
-    ],
+    "transfer_accounts": {
+            "X11111111" : {
+            "main_account": "Assets:US:Fidelity:Checking",
+            "cash_account": "Assets:US:Fidelity:Checking",
+            "dedupe_style": fidelity_csv.Importer.TransferDedupeStyle.COMMENT_INCOMING_TRANSACTIONS,
+        },
+    },
 }
 
 IMPORTER = fidelity_csv.Importer(

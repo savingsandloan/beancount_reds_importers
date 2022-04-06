@@ -39,11 +39,7 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
         self.funds_db_txt = "funds_by_ticker"
         self.get_ticker_info = self.get_ticker_info_custom
         # [(ticker, id, long_name), ...]
-        self.transfer_info_accounts = self.config["transfer_info"]["transfer_accounts"]
-        self.transfer_info_accounts_by_name = {
-            name: (acct, dedupeStyle)
-            for name, acct, dedupeStyle in self.transfer_info_accounts
-        }
+        self.transfer_infos_by_name = self.config["transfer_info"]["transfer_accounts"]
 
         self.includes_balances = False
         self.includes_commodities = True
@@ -145,11 +141,14 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
         # configured account dedupe metadata
         transfer_account = getattr(ot, "transfer_account", None)
         if (transfer_account is None) or (
-            transfer_account not in self.transfer_info_accounts_by_name
+            transfer_account not in self.transfer_infos_by_name
         ):
             return metadata
 
-        account, dedupeStyle = self.transfer_info_accounts_by_name[transfer_account]
+        transfer_info = self.transfer_infos_by_name[transfer_account]
+        dedupeStyle = transfer_info.get(
+            "dedupe_style", 
+            Importer.TransferDedupeStyle.COMMENT_NO_TRANSACTIONS)
         if dedupeStyle == Importer.TransferDedupeStyle.COMMENT_ALL_TRANSACTIONS:
             metadata[DUPLICATE_META] = True
         elif self.__is_transfer_in_action(memo) and (
@@ -526,14 +525,23 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
             transaction.type in (self.transfer_unit_types + self.transfer_amount_types)
             and transfer_account is not None
         ):
-            transfer_info_account = self.transfer_info_accounts_by_name.get(
+            # try to get transfer account info
+            transfer_info_account = self.transfer_infos_by_name.get(
                 transfer_account, None
             )
             if transfer_info_account is None:
+                # return default if there isn't a specific account listed
                 return self.config["transfer"]
             else:
-                account, dedupe_style = transfer_info_account
-                return account
+                # return appropriate transfer account
+                if(ticker is None):
+                    #assume cash account
+                    cash_account = transfer_info_account['cash_account']
+                    return cash_account
+                else:
+                    main_account = transfer_info_account['main_account']
+                    account = self.add_ticker(main_account, ticker)
+                    return account
         elif transaction.type == "income" and self.__is_fidelityrewards_cashback_action(
             memo
         ):

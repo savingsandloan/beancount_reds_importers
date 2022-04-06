@@ -21,28 +21,27 @@ fund_info = {
 }
 
 transfer_info = {
-    "transfer_accounts": [
-        (
-            "C_SCHLAB DEPTRIALCREDT",
-            "Income:Misc:BankValidation",
-            fidelity_csv.Importer.TransferDedupeStyle.COMMENT_NO_TRANSACTIONS,
-        ),
-        (
-            "Sphere Inc * Cashew App",
-            "Assets:US:SphereCashewApp",
-            fidelity_csv.Importer.TransferDedupeStyle.COMMENT_INCOMING_TRANSACTIONS,
-        ),
-        (
-            "X11111111",
-            "Assets:US:Fidelity:Checking",
-            fidelity_csv.Importer.TransferDedupeStyle.COMMENT_INCOMING_TRANSACTIONS,
-        ),
-        (
-            "SCHLAB BANK P2P  JANE DOE",
-            "Assets:Schlab:Checking",
-            fidelity_csv.Importer.TransferDedupeStyle.COMMENT_INCOMING_TRANSACTIONS,
-        ),
-    ],
+    "transfer_accounts": {
+            "C_SCHLAB DEPTRIALCREDT" : {
+                "transfer": "Income:Misc:BankValidation", 
+                "dedupe_style": fidelity_csv.Importer.TransferDedupeStyle.COMMENT_NO_TRANSACTIONS
+            },
+            "Sphere Inc * Cashew App" : {
+                "main_account": "Assets:US:SphereCashewApp",
+                "cash_account": "Assets:US:SphereCashewApp:Cash",
+                "dedupe_style": fidelity_csv.Importer.TransferDedupeStyle.COMMENT_INCOMING_TRANSACTIONS
+            },
+            "X11111111" : {
+                "main_account": "Assets:US:Fidelity:Checking",
+                "cash_account": "Assets:US:Fidelity:Checking",
+                "dedupe_style": fidelity_csv.Importer.TransferDedupeStyle.COMMENT_INCOMING_TRANSACTIONS
+            },
+            "SCHLAB BANK P2P  JANE DOE" : {
+                "main_account": "Assets:Schlab:Checking",
+                "cash_account": "Assets:Schlab:Checking",
+                "dedupe_style": fidelity_csv.Importer.TransferDedupeStyle.COMMENT_INCOMING_TRANSACTIONS,
+            },
+    },
 }
 
 IMPORTER = fidelity_csv.Importer(
