@@ -23,7 +23,7 @@ fund_info = {
 transfer_info = {
     "transfer_accounts": {
             "C_SCHLAB DEPTRIALCREDT" : {
-                "transfer": "Income:Misc:BankValidation", 
+                "dep_account": "Income:Misc:BankValidation", 
                 "dedupe_style": fidelity_csv.Importer.TransferDedupeStyle.COMMENT_NO_TRANSACTIONS
             },
             "Sphere Inc * Cashew App" : {

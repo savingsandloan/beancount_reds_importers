@@ -534,14 +534,26 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
                 return self.config["transfer"]
             else:
                 # return appropriate transfer account
-                if(ticker is None):
-                    #assume cash account
-                    cash_account = transfer_info_account['cash_account']
-                    return cash_account
+
+                # See if there is a transaction-specific
+                # transfer account first...
+                # (e.g. "dep_account" for "dep" transactions)
+                transfer_account_key = transaction.type + "_account"
+                transfer_account = transfer_info_account.get(
+                    transfer_account_key, None)
+                if(transfer_account):
+                    return transfer_account
                 else:
-                    main_account = transfer_info_account['main_account']
-                    account = self.add_ticker(main_account, ticker)
-                    return account
+                    # ...otherwise look for 
+                    # cash_account or main_account
+                    if(ticker is None):
+                        #assume cash account
+                        cash_account = transfer_info_account['cash_account']
+                        return cash_account
+                    else:
+                        main_account = transfer_info_account['main_account']
+                        account = self.add_ticker(main_account, ticker)
+                        return account
         elif transaction.type == "income" and self.__is_fidelityrewards_cashback_action(
             memo
         ):
