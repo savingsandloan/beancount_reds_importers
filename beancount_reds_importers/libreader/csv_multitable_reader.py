@@ -103,7 +103,7 @@ class Importer(csvreader.Importer):
         # TODO
         raise "Not supported"
 
-    def get_commodity_entries(self):
+    def get_commodities(self):
         """Commodity listing entries"""
         #
         # Expected to return a named
@@ -118,7 +118,7 @@ class Importer(csvreader.Importer):
         #
         raise "Not supported"
 
-    def get_account_entries(self):
+    def get_accounts(self):
         """Account open/close entries"""
         #
         # Expected to return a named
