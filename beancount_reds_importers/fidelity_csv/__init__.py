@@ -546,7 +546,7 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
                 else:
                     # ...otherwise look for 
                     # cash_account or main_account
-                    if(ticker is None):
+                    if(ticker is self.currency):
                         #assume cash account
                         cash_account = transfer_info_account['cash_account']
                         return cash_account

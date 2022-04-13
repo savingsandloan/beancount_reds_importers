@@ -241,9 +241,9 @@ class Importer(importer.ImporterProtocol):
         date = date.date()
 
         try:
-            if ot.type in self.transfer_unit_types:
+            if ot.type in ['transfer']:
                 units = ot.units
-            elif ot.type in self.transfer_amount_types:
+            elif ot.type in ['other', 'credit', 'debit', 'dep', 'cash']:
                 units = ot.amount
             else:
                 units = ot.total
@@ -251,35 +251,28 @@ class Importer(importer.ImporterProtocol):
             print("Could not determine field for transaction amount")
             # import pdb; pdb.set_trace()
 
-        if ((ot.type in ['income', 'dividends', 'capgains_lt',
-                       'capgains_st', 'transfer']) and
-            (hasattr(ot, 'security') and ot.security)):
+        main_acct = None
+        if ot.type in ['income', 'dividends', 'capgainsd_lt',
+                       'capgainsd_st', 'transfer'] and (hasattr(ot, 'security') and ot.security):
             ticker, ticker_long_name = self.get_ticker_info(ot.security)
             description = f'[{ticker}] {ticker_long_name}'
-            target_acct = self.get_target_acct(ot, ticker)
-            if ot.type in ['income', 'dividends', 'capgains_st', 'capgains_lt']:  
-                # security income/gain to cash transfer
-                source_acct = config['cash_account']
-            else:
-                # security shares to shares transfer
-                source_acct = self.main_acct(ticker)
-        else:
-            # cash to cash transfer
+            main_acct = self.main_acct(ticker)
+        else:  # cash transaction
             description = ot.type
-            target_acct = self.get_target_acct(ot, None)
-            source_acct = config['cash_account']
             ticker = self.currency
+            main_acct = config['cash_account']
 
         # Build transaction entry
         entry = data.Transaction(metadata, date, self.FLAG,
                                  ot.memo, description, data.EMPTY_SET, data.EMPTY_SET, [])
+        target_acct = self.get_target_acct(ot, ticker).format(ticker=ticker)
 
         # Build postings
-        if ot.type in ['income', 'dividends', 'capgains_st', 'capgains_lt']:  # cash
-            data.create_simple_posting(entry, source_acct, ot.total, self.currency)
+        if ot.type in ['income', 'dividends', 'capgainsd_st', 'capgainsd_lt']:  # cash
+            data.create_simple_posting(entry, config['cash_account'], ot.total, self.currency)
             data.create_simple_posting(entry, target_acct, -1 * ot.total, self.currency)
         else:
-            data.create_simple_posting(entry, source_acct, units, ticker)
+            data.create_simple_posting(entry, main_acct, units, ticker)
             data.create_simple_posting(entry, target_acct, -1 * units, ticker)
         return entry
 
