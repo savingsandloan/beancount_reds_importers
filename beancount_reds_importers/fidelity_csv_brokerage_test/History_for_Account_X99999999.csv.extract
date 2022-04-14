@@ -1,0 +1,96 @@
+
+2018-09-01 * "DIRECT               DEPOSIT C_SCHLAB DEPTRIALCREDT" "dep"
+  Assets:Fidelity:Brokerage:Cash        0.2 USD
+  Income:Misc:BankValidation           -0.2 USD
+  Expenses:Investing:TradeCommissions
+
+2018-09-17 * "YOU BOUGHT" "[CUSIP912796RC5] UNITED STATES TREAS BILLS ZERO CPN 0.00000% 03/21/2019"
+  Assets:Fidelity:Brokerage                15000 CUSIP912796RC5 {0.9884 USD}
+  Assets:Fidelity:Brokerage:Cash       -14826.34 USD
+  Expenses:Investing:TradeCommissions
+
+2018-09-17 commodity CUSIP912796RC5
+  bond-annual-yield: 2.347228
+  bond-exp-date: 2019-03-21 00:00:00
+  bond-term-months: 6
+  bond-term-yield: 1.173614
+  bond-type: "USTBond - Short-Term - US Treasury Bill 6mo"
+  name: "US Treasury Bill Zero Coupon - CUSIP912796RC5"
+
+2018-09-24 * "YOU BOUGHT" "[CUSIP9128285B2] UNITED STATES TREAS NTS NOTE 2.75000% 09/30/2020"
+  bond-accrued-interest: "0.23"
+  Assets:Fidelity:Brokerage                3000 CUSIP9128285B2 {0.9985 USD}
+  Assets:Fidelity:Brokerage:Cash       -2995.66 USD
+  Expenses:Investing:TradeCommissions
+
+2018-09-24 commodity CUSIP9128285B2
+  bond-coupon-rate: 2.75000
+  bond-exp-date: 2020-09-30 00:00:00
+  bond-term-months: 24
+  bond-type: "USTBond - Medium-Term - US Treasury Note 2yr"
+  name: "US Treasury Note - CUSIP9128285B2"
+
+2021-01-01 * "DIRECT DEPOSIT Sphere Inc * Cashew App (Cash)" "dep"
+  __duplicate__: TRUE
+  Assets:Fidelity:Brokerage:Cash        100.20 USD
+  Assets:US:SphereCashewApp:Cash       -100.20 USD
+  Expenses:Investing:TradeCommissions
+
+2021-01-02 * "Electronic Funds Transfer Received (Cash)" "cash"
+  __duplicate__: TRUE
+  Assets:Fidelity:Brokerage:Cash        123.4 USD
+  Assets:TODOTransfer                  -123.4 USD
+  Expenses:Investing:TradeCommissions
+
+2021-04-20 * "CHECK RECEIVED (Cash)" "dep"
+  Assets:Fidelity:Brokerage:Cash        4200 USD
+  Assets:TODOTransfer                  -4200 USD
+  Expenses:Investing:TradeCommissions
+
+2021-05-01 * "TRANSFERRED FROM VS X11-111111-1 (Cash)" "cash"
+  __duplicate__: TRUE
+  Assets:Fidelity:Brokerage:Cash        10000 USD
+  Assets:US:Fidelity:Checking          -10000 USD
+  Expenses:Investing:TradeCommissions
+
+2021-05-20 * "YOU BOUGHT SOARING EAGLE ACQUISITION CORP COM USD0 (G8354H126) (Cash)" "[CUSIPG8354H126] Soaring Eagle Acq Corp"
+  settlement_date: "2021-05-26"
+  Assets:Fidelity:Brokerage                1 CUSIPG8354H126 {9.88 USD}
+  Assets:Fidelity:Brokerage:Cash       -9.88 USD
+  Expenses:Investing:TradeCommissions
+
+2021-09-01 * "MERGER MER FROM G8354H126#REOR M0099999990001 GINKGO BIOWORKS HOLDINGS INC CL A SHS (DNA) (Cash)" "[DNA] Ginkgo Bioworks Holdings, Inc."
+  Assets:Fidelity:Brokerage             1 DNA
+  Assets:TODOTransfer                  -1 DNA
+  Expenses:Investing:TradeCommissions
+
+2021-09-01 * "MERGER MER PAYOUT #REOR M0099999990000 SOARING EAGLE ACQUISITION CORP COM USD0 (G8354H126) (Cash)" "[CUSIPG8354H126] Soaring Eagle Acq Corp"
+  Assets:Fidelity:Brokerage            -1 CUSIPG8354H126
+  Assets:TODOTransfer                   1 CUSIPG8354H126
+  Expenses:Investing:TradeCommissions
+
+2021-11-30 * "REINVESTMENT FIDELITY TREASURY MONEY MARKET FUND (FZFXX) (Cash)" "[FZFXX] Fidelity Treasury Money Market Fund"
+  Assets:Fidelity:Brokerage             0.02 FZFXX @ 1 USD
+  Assets:Fidelity:Brokerage:Cash       -0.02 USD
+  Expenses:Investing:TradeCommissions
+
+2021-12-03 * "REINVESTMENT FIDELITY ZERO EXTND MARKET INDEX FUND (FZIPX) (Cash)" "[FZIPX] Fidelity ZERO Extended Market Index Fund"
+  Assets:Fidelity:Brokerage                 48.195 FZIPX {12.45 USD}
+  Assets:Fidelity:Brokerage:Cash           -600.03 USD
+  Equity:Fidelity:Brokerage:RoundingError  0.00225 USD
+  Expenses:Investing:TradeCommissions
+
+2021-12-03 * "DIVIDEND RECEIVED FIDELITY ZERO EXTND MARKET INDEX FUND (FZIPX) (Cash)" "[FZIPX] Fidelity ZERO Extended Market Index Fund"
+  Assets:Fidelity:Brokerage:Cash        100.01 USD
+  Income:Fidelity:Brokerage:Dividends  -100.01 USD
+  Expenses:Investing:TradeCommissions
+
+2021-12-03 * "SHORT-TERM CAP GAIN FIDELITY ZERO EXTND MARKET INDEX FUND (FZIPX) (Cash)" "capgains_st"
+  Assets:Fidelity:Brokerage:Cash         150.01 USD
+  Income:Fidelity:Brokerage:Capgainsst  -150.01 USD
+  Expenses:Investing:TradeCommissions
+
+2021-12-03 * "LONG-TERM CAP GAIN FIDELITY ZERO EXTND MARKET INDEX FUND (FZIPX) (Cash)" "capgains_lt"
+  Assets:Fidelity:Brokerage:Cash         350.01 USD
+  Income:Fidelity:Brokerage:Capgainslt  -350.01 USD
+  Expenses:Investing:TradeCommissions

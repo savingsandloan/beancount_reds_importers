@@ -1,0 +1,80 @@
+
+2021-01-05 * "DIRECT DEPOSIT ELAN CARDSVCRedemption (Cash)" "income"
+  Assets:Fidelity:Checking                29.84 USD
+  Income:Misc:CreditCard:CashBackReward  -29.84 USD
+  Expenses:Investing:TradeCommissions
+
+2021-04-05 * "DIRECT DEPOSIT ELAN CARDSVCRedemption as of 04/02/2021 (Cash)" "income"
+  Assets:Fidelity:Checking                44.02 USD
+  Income:Misc:CreditCard:CashBackReward  -44.02 USD
+  Expenses:Investing:TradeCommissions
+
+2021-04-06 * "DEBIT CARD PURCHASE CASH APP*JANE DOE 8888888888 CA (Cash)" "debit"
+  Assets:Fidelity:Checking             -63 USD
+  Assets:TODOTransfer                   63 USD
+  Expenses:Investing:TradeCommissions
+
+2021-04-15 * "DIRECT DEBIT IRS USATAXPYMT (Cash)" "debit"
+  Assets:Fidelity:Checking             -555 USD
+  Assets:TODOTransfer                   555 USD
+  Expenses:Investing:TradeCommissions
+
+2021-05-01 * "TRANSFERRED TO VS X99-999999-9 (Cash)" "cash"
+  Assets:Fidelity:Checking             -10000 USD
+  Assets:US:Fidelity:Brokerage:Cash     10000 USD
+  Expenses:Investing:TradeCommissions
+
+2021-06-30 * "INTEREST EARNED FDIC INSURED DEPOSIT AT DISCOVER BANK N (QHMBQ) (Cash)" "[QHMBQ] DISCOVER BANK N"
+  Assets:Fidelity:Checking              0.01 USD
+  Income:Fidelity:Checking:Interest    -0.01 USD
+  Expenses:Investing:TradeCommissions
+
+2021-07-30 * "INTEREST EARNED FDIC INSURED DEPOSIT AT CITIBANK NOT CO (QPCTQ) (Cash)" "[QPCTQ] CITIBANK NOT CO"
+  Assets:Fidelity:Checking              0.01 USD
+  Income:Fidelity:Checking:Interest    -0.01 USD
+  Expenses:Investing:TradeCommissions
+
+2021-07-30 * "INTEREST EARNED FDIC INSURED DEPOSIT AT TRUIST BANK NOT (QPIFQ) (Cash)" "[QPIFQ] TRUIST BANK NOT"
+  Assets:Fidelity:Checking              0.01 USD
+  Income:Fidelity:Checking:Interest    -0.01 USD
+  Expenses:Investing:TradeCommissions
+
+2021-08-03 * "DEBIT CARD PURCHASE POS1111 USPS PO 90210 BEVERLY CA (Cash)" "debit"
+  Assets:Fidelity:Checking             -11.9 USD
+  Assets:TODOTransfer                   11.9 USD
+  Expenses:Investing:TradeCommissions
+
+2021-08-20 * "DIRECT DEBIT eBay IncFLEAPAYMENTS (Cash)" "debit"
+  Assets:Fidelity:Checking             -1.53 USD
+  Assets:TODOTransfer                   1.53 USD
+  Expenses:Investing:TradeCommissions
+
+2021-11-10 * "DIRECT DEBIT CHASE CREDIT CEPAY (Cash)" "debit"
+  Assets:Fidelity:Checking             -25.01 USD
+  Assets:TODOTransfer                   25.01 USD
+  Expenses:Investing:TradeCommissions
+
+2021-11-10 * "DIRECT DEBIT CARDMEMBER SERWEB PYMT (Cash)" "debit"
+  Assets:Fidelity:Checking             -101.11 USD
+  Assets:TODOTransfer                   101.11 USD
+  Expenses:Investing:TradeCommissions
+
+2021-11-13 * "Check Paid # 1000 (Cash)" "debit"
+  Assets:Fidelity:Checking             -111.11 USD
+  Assets:TODOTransfer                   111.11 USD
+  Expenses:Investing:TradeCommissions
+
+2021-11-17 * "DIRECT DEBIT HEALTHHELL IHealthHell (Cash)" "debit"
+  Assets:Fidelity:Checking             -25 USD
+  Assets:TODOTransfer                   25 USD
+  Expenses:Investing:TradeCommissions
+
+2021-11-22 * "DIRECT DEPOSIT HEALTHHELLHealthHell (Cash)" "dep"
+  Assets:Fidelity:Checking              1100.00 USD
+  Assets:TODOTransfer                  -1100.00 USD
+  Expenses:Investing:TradeCommissions
+
+2021-12-01 * "TRANSFERRED TO VS 222-222222-2 CUR YR PARTICPNT CON (Cash)" "cash"
+  Assets:Fidelity:Checking             -888 USD
+  Assets:US:Fidelity:HSA:Cash           888 USD
+  Expenses:Investing:TradeCommissions
