@@ -393,6 +393,9 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
     def __is_hsa_debit(self, type_):
         return re.match(r"NORMAL DISTR PARTIAL DEBIT", type_) is not None
 
+    def __is_reverse_split(self, type_):
+        return re.match(r"REVERSE SPLIT R/S", type_) is not None
+
     def convert_transaction_types(self, rdr):
         def transaction_type_map_(type_, row):
             return self.transaction_type_map(type_, row)
@@ -414,12 +417,12 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
         elif re.match(r"IN LIEU OF FRX SHARE LEU PAYOUT", type_):
             # Special scenario cashout - generally do manually
             return "income"
-        elif re.match(r"REVERSE SPLIT R/S", type_):
-            # stock split - do manually
-            return "sellother"
         elif re.match(r"MERGER", type_):
             # merger - do manually
             return "transfer"
+        elif self.__is_reverse_split(type_):
+            # stock split - do manually
+            return "sellother"
         elif self.__is_redemption_payout_action(type_):
             # TODO determine if more info needed to
             # handle specific bond sale
@@ -729,6 +732,27 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
         else:
             return price
 
+    def __convert_reverse_split_price(self, price, row):
+        """Generally we expect reverse split events
+        to have no value for 'amount', but newer
+        fidelity csv files (as of 2022/2023) may
+        put in a 0.00 instead, leading possibly to a
+        PriceCostBothZeroException exception.
+
+        This function is a workaround, ultimately the user
+        still needs to review/edit the entry but these
+        events don't usually happen."""
+        memo = getattr(row, "memo", None)
+        is_reverse_split = self.__is_reverse_split(memo)
+
+        if is_reverse_split:
+            if (price is None) or (price == 0.00):
+                return D(999.0)
+            else:
+                return price
+        else:
+            return price
+
     def __associate_transaction_values(self, rdr):
         def is_total_to_amount_migration(row):
             if (
@@ -801,10 +825,20 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
         # Convert strings to numbers
         rdr = self.convert_transaction_columns(rdr)
 
-        # Post-number conversion, convert bond prices.
+        # Post-number conversions
+        # ----------------------------------
+
+        # Convert bond prices.
         rdr = rdr.convert(
             "unit_price",
             lambda p, row: self.__convert_par_bond_price(p, row),
+            pass_row=True,
+        )
+
+        # Workaround for Reverse Split events.
+        rdr = rdr.convert(
+            "unit_price",
+            lambda p, row: self.__convert_reverse_split_price(p, row),
             pass_row=True,
         )
 
