@@ -787,7 +787,8 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
             return t[1:]
 
         def blank_sanitize(t):
-            if t == "":
+            if ((t == "") or
+                (re.match(r"^\s*$", t) is not None)):
                 return None
             else:
                 return t
