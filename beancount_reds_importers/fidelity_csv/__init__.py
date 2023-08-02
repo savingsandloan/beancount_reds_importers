@@ -396,6 +396,9 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
     def __is_reverse_split(self, type_):
         return re.match(r"REVERSE SPLIT R/S", type_) is not None
 
+    def __is_merger(self, type_):
+        return re.match(r"MERGER", type_) is not None
+
     def convert_transaction_types(self, rdr):
         def transaction_type_map_(type_, row):
             return self.transaction_type_map(type_, row)
@@ -417,9 +420,30 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
         elif re.match(r"IN LIEU OF FRX SHARE LEU PAYOUT", type_):
             # Special scenario cashout - generally do manually
             return "income"
-        elif re.match(r"MERGER", type_):
+        elif self.__is_merger(type_):
             # merger - do manually
-            return "transfer"
+            #
+            # mergers are generally either transfers
+            # or sells depending on whether there's a cashout
+            if((row["total"] is not None) and (
+                D(row["total"]) != D(0.00))
+               ):
+                if(row["security"] is None) or (
+                    row["security"] == "" ):
+                    # Give a warning for this scenario, 
+                    # Fidelity CSV can create non-zero sell
+                    # events without a security/symbol reference.  
+                    print(
+                        "Warning: MERGER event with non-zero total value of: " + 
+                        row["total"] +
+                        " for security description: " +
+                        row["security_description"] +
+                        " check CSV file.")
+                    return "transfer"
+                else:
+                    return "sellstock"
+            else:
+                return "transfer"
         elif self.__is_reverse_split(type_):
             # stock split - do manually
             return "sellother"
