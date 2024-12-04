@@ -1,11 +1,11 @@
 
-2021-12-01 * "PARTIC CONTR CURRENT VS X11-111111-1 CUR YR PARTICPNT CON (Cash)" "dep"
+2024-12-01 * "PARTIC CONTR CURRENT VS X11-111111-1 CUR YR PARTICPNT CON (Cash)" "dep"
   __duplicate__: TRUE
   Assets:Fidelity:HSA:Cash              888 USD
   Assets:US:Fidelity:Checking          -888 USD
   Expenses:Investing:TradeCommissions
 
-2021-12-05 * "NORMAL DISTR PARTIAL DEBIT Athena HealthPURCHASE (Cash)" "debit"
+2024-12-05 * "NORMAL DISTR PARTIAL DEBIT Athena HealthPURCHASE (Cash)" "debit"
   Assets:Fidelity:HSA:Cash             -444.44 USD
   Assets:TODOTransfer                   444.44 USD
   Expenses:Investing:TradeCommissions

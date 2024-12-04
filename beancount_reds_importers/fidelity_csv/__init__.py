@@ -16,7 +16,6 @@ from beancount.core import data
 from beancount.core.number import D
 import datetime
 
-
 class Importer(investments.Importer, csv_multitable_reader.Importer):
     class TransferDedupeStyle(Enum):
         COMMENT_INCOMING_TRANSACTIONS = 1
@@ -26,8 +25,11 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
 
     def custom_init(self):
         assert "account_number" in self.config
-        header_preamble = r"\n\n\nBrokerage\n\n"
-        self.header_section_title = "Run Date,Action,Symbol,Security Description,Security Type,Quantity,Price ($),Commission ($),Fees ($),Accrued Interest ($),Amount ($),Settlement Date"
+
+        #NOTE: header_preamble previously was r"\n\n\nBrokerage\n\n"
+        #      If updating this, remember to also update `self.skip_head_rows`
+        header_preamble = r"\n\n"
+        self.header_section_title = "Run Date,Action,Symbol,Description,Type,Quantity,Price ($),Commission ($),Fees ($),Accrued Interest ($),Amount ($),Cash Balance ($),Settlement Date"
         header_lines = header_preamble + re.escape(self.header_section_title)
 
         self.filename_identifier_substring = (
@@ -44,7 +46,7 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
         self.includes_balances = False
         self.includes_commodities = True
         self.includes_accounts = True
-        self.skip_head_rows = 5  # skip lines before header
+        self.skip_head_rows = 2  # skip lines before header
         self.skip_section_rows = 0
         self.skip_tail_rows = 11
 
@@ -54,14 +56,15 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
             "Run Date": "date",
             "Action": "type",
             "Symbol": "security",
-            "Security Description": "security_description",
-            "Security Type": "security_type",
+            "Description": "security_description",
+            "Type": "security_type",
             "Quantity": "units",
             "Price ($)": "unit_price",
             "Commission ($)": "commission",
             "Fees ($)": "fees",
             "Accrued Interest ($)": "accrued_interest",
             "Amount ($)": "total",
+            "Cash Balance ($)": "balance",
             "Settlement Date": "settleDate",
             "tradeDate": "tradeDate",  # Inserted column
             "amount": "amount",  # Inserted column
@@ -370,6 +373,11 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
             type_ == "Electronic Funds Transfer Received (Cash)"
         )
 
+    def __is_electronic_fund_paid_action(self, type_):
+        return (type_ == "Electronic Funds Transfer Paid") or (
+            type_ == "Electronic Funds Transfer Paid (Cash)"
+        )
+
     def __is_asset_interest_action(self, type_):
         # NOTE: previously this has been a specific
         # *bond* interest type_ that also checked
@@ -475,7 +483,12 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
             return "debit"
         elif re.match(r"DEBIT\s*CARD PURCHASE", type_):
             return "debit"
+        elif re.match(r"DEBIT\s*CARD RETURN", type_):
+            return "dep"
         elif self.__is_electronic_fund_received_action(type_):
+            # NOTE: assuming cash only
+            return "cash"
+        elif self.__is_electronic_fund_paid_action(type_):
             # NOTE: assuming cash only
             return "cash"
         elif self.__is_asset_interest_action(type_):
@@ -615,6 +628,8 @@ class Importer(investments.Importer, csv_multitable_reader.Importer):
         ):
             # Skip money market dividend received actions
             # assuming a reinvest action will happen anyway
+
+            # TODO: remove this, use an 'intermediate' account with zero-balance instead
             return True
         else:
             return False

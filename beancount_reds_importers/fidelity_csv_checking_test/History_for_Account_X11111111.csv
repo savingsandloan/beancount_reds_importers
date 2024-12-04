@@ -1,25 +1,22 @@
 
 
-
-Brokerage
-
-Run Date,Action,Symbol,Security Description,Security Type,Quantity,Price ($),Commission ($),Fees ($),Accrued Interest ($),Amount ($),Settlement Date
- 12/01/2021, TRANSFERRED TO VS 222-222222-2 CUR YR PARTICPNT CON (Cash), , No Description,Cash,,,,,,-888,
- 11/22/2021, DIRECT DEPOSIT HEALTHHELLHealthHell (Cash), , No Description,Cash,,,,,,1100.00,
- 11/17/2021, DIRECT DEBIT HEALTHHELL IHealthHell (Cash), , No Description,Cash,,,,,,-25,
- 11/13/2021, Check Paid # 1000 (Cash), , No Description,Cash,,,,,,-111.11,
- 11/10/2021, DIRECT DEBIT CHASE CREDIT CEPAY (Cash), , No Description,Cash,,,,,,-25.01,
- 11/10/2021, DIRECT DEBIT CARDMEMBER SERWEB PYMT (Cash), , No Description,Cash,,,,,,-101.11,
- 08/20/2021, DIRECT DEBIT eBay IncFLEAPAYMENTS (Cash), , No Description,Cash,,,,,,-1.53,
- 08/03/2021, DEBIT CARD PURCHASE POS1111 USPS PO 90210 BEVERLY CA (Cash), , No Description,Cash,,,,,,-11.9,
- 07/30/2021, INTEREST EARNED FDIC INSURED DEPOSIT AT CITIBANK NOT CO (QPCTQ) (Cash), QPCTQ, FDIC INSURED DEPOSIT AT CITIBANK NOT CO,Cash,,,,,,0.01,
- 07/30/2021, INTEREST EARNED FDIC INSURED DEPOSIT AT TRUIST BANK NOT (QPIFQ) (Cash), QPIFQ, FDIC INSURED DEPOSIT AT TRUIST BANK NOT,Cash,,,,,,0.01,
- 06/30/2021, INTEREST EARNED FDIC INSURED DEPOSIT AT DISCOVER BANK N (QHMBQ) (Cash), QHMBQ, FDIC INSURED DEPOSIT AT DISCOVER BANK N,Cash,,,,,,0.01,
- 05/01/2021, TRANSFERRED TO VS X99-999999-9 (Cash), , No Description,Cash,,,,,,-10000,
- 04/15/2021, DIRECT DEBIT IRS USATAXPYMT (Cash), , No Description,Cash,,,,,,-555,
- 04/06/2021, DEBIT CARD PURCHASE CASH APP*JANE DOE 8888888888 CA (Cash), , No Description,Cash,,,,,,-63,
- 04/05/2021, DIRECT DEPOSIT ELAN CARDSVCRedemption as of 04/02/2021 (Cash), , No Description,Cash,,,,,,44.02,
- 01/05/2021, DIRECT DEPOSIT ELAN CARDSVCRedemption (Cash), , No Description,Cash,,,,,,29.84,
+Run Date,Action,Symbol,Description,Type,Quantity,Price ($),Commission ($),Fees ($),Accrued Interest ($),Amount ($),Cash Balance ($),Settlement Date
+ 12/01/2021, TRANSFERRED TO VS 222-222222-2 CUR YR PARTICPNT CON (Cash), , No Description,Cash,,,,,,-888,999.00,
+ 11/22/2021, DIRECT DEPOSIT HEALTHHELLHealthHell (Cash), , No Description,Cash,,,,,,1100.00,999.00,
+ 11/17/2021, DIRECT DEBIT HEALTHHELL IHealthHell (Cash), , No Description,Cash,,,,,,-25,999.00,
+ 11/13/2021, Check Paid # 1000 (Cash), , No Description,Cash,,,,,,-111.11,999.00,
+ 11/10/2021, DIRECT DEBIT CHASE CREDIT CEPAY (Cash), , No Description,Cash,,,,,,-25.01,999.00,
+ 11/10/2021, DIRECT DEBIT CARDMEMBER SERWEB PYMT (Cash), , No Description,Cash,,,,,,-101.11,999.00,
+ 08/20/2021, DIRECT DEBIT eBay IncFLEAPAYMENTS (Cash), , No Description,Cash,,,,,,-1.53,999.00,
+ 08/03/2021, DEBIT CARD PURCHASE POS1111 USPS PO 90210 BEVERLY CA (Cash), , No Description,Cash,,,,,,-11.9,999.00,
+ 07/30/2021, INTEREST EARNED FDIC INSURED DEPOSIT AT CITIBANK NOT CO (QPCTQ) (Cash), QPCTQ, FDIC INSURED DEPOSIT AT CITIBANK NOT CO,Cash,,,,,,0.01,999.00,
+ 07/30/2021, INTEREST EARNED FDIC INSURED DEPOSIT AT TRUIST BANK NOT (QPIFQ) (Cash), QPIFQ, FDIC INSURED DEPOSIT AT TRUIST BANK NOT,Cash,,,,,,0.01,999.00,
+ 06/30/2021, INTEREST EARNED FDIC INSURED DEPOSIT AT DISCOVER BANK N (QHMBQ) (Cash), QHMBQ, FDIC INSURED DEPOSIT AT DISCOVER BANK N,Cash,,,,,,0.01,999.00,
+ 05/01/2021, TRANSFERRED TO VS X99-999999-9 (Cash), , No Description,Cash,,,,,,-10000,999.00,
+ 04/15/2021, DIRECT DEBIT IRS USATAXPYMT (Cash), , No Description,Cash,,,,,,-555,999.00,
+ 04/06/2021, DEBIT CARD PURCHASE CASH APP*JANE DOE 8888888888 CA (Cash), , No Description,Cash,,,,,,-63,999.00,
+ 04/05/2021, DIRECT DEPOSIT ELAN CARDSVCRedemption as of 04/02/2021 (Cash), , No Description,Cash,,,,,,44.02,999.00,
+ 01/05/2021, DIRECT DEPOSIT ELAN CARDSVCRedemption (Cash), , No Description,Cash,,,,,,29.84,999.00,
 
 
 

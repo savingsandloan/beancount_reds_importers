@@ -1,11 +1,8 @@
 
 
-
-Brokerage
-
-Run Date,Action,Symbol,Security Description,Security Type,Quantity,Price ($),Commission ($),Fees ($),Accrued Interest ($),Amount ($),Settlement Date
- 12/05/2021, NORMAL DISTR PARTIAL DEBIT Athena HealthPURCHASE (Cash), , No Description,Cash,,,,,,-444.44,
- 12/01/2021, PARTIC CONTR CURRENT VS X11-111111-1 CUR YR PARTICPNT CON (Cash), , No Description,Cash,,,,,,888,
+Run Date,Action,Symbol,Description,Type,Quantity,Price ($),Commission ($),Fees ($),Accrued Interest ($),Amount ($),Cash Balance ($),Settlement Date
+ 12/05/2024, NORMAL DISTR PARTIAL DEBIT Athena HealthPURCHASE (Cash), , No Description,Cash,,,,,,-444.44,443.56,
+ 12/01/2024, PARTIC CONTR CURRENT VS X11-111111-1 CUR YR PARTICPNT CON (Cash), , No Description,Cash,,,,,,888,888.00,
 
 
 
